@@ -21,6 +21,7 @@
 	#include "oop.h"
 
 	CLASS("OO_CAMERA")
+		PRIVATE VARIABLE("bool","attach");
 		PRIVATE VARIABLE("object","camera");
 		PRIVATE VARIABLE("string","name");
 		PRIVATE STATIC_VARIABLE("scalar","instanceid");
@@ -47,19 +48,50 @@
 		};
 
 		PUBLIC FUNCTION("object", "backCamera"){
-			MEMBER("camera", nil) attachto [_this,[0.7,-2,1.5]];
+			_array = [_this,[0.7,-2,1.5]];
+			MEMBER("attachTo", _array);
 		};
 
 		PUBLIC FUNCTION("object", "topCamera"){
-			MEMBER("camera", nil) attachto [_this,[0,0,30]];
-			MEMBER("camera", nil) camSetTarget _this;
-			MEMBER("camera", nil) camCommit 0;
+			_array = [_this,[0,0,30]];
+			MEMBER("attachTo", _array);
 		};
 
 		PUBLIC FUNCTION("object", "faceCamera"){
-			MEMBER("camera", nil) attachto [_this,[0,1,1.5]];
-			MEMBER("camera", nil) camSetTarget _this;
+			_array = [_this,[0,1,0], "neck"];
+			MEMBER("attachTo", _array);
+		};
+
+		PUBLIC FUNCTION("array", "attachTo"){
+			private ["_object", "_position", "_poscamera", "_vehicle"];
+			
+			_object = _this select 0;
+			_position = _this select 1;
+			if(count _this > 2) then {
+				_poscamera = _this select 2;
+			} else {
+				_poscamera = "";
+			};
+			_vehicle = vehicle _object;
+
+			MEMBER("camera", nil) attachto [_object,_position, _poscamera];
+			MEMBER("camera", nil) camSetTarget _object;
 			MEMBER("camera", nil) camCommit 0;
+			MEMBER("attach", true);
+			
+			while { MEMBER("attach", nil) } do {
+				if(_vehicle != vehicle _object) then {
+					_vehicle = vehicle _object;
+					MEMBER("camera", nil) attachto [_vehicle,_position, _poscamera];
+					MEMBER("camera", nil) camSetTarget _vehicle;
+					MEMBER("camera", nil) camCommit 0;
+				};
+				sleep 1;	
+			};
+		};
+
+		PUBLIC FUNCTION("array", "detach"){
+			MEMBER("attach", false);
 		};
 
 		PUBLIC FUNCTION("object", "uavCamera"){
@@ -81,20 +113,30 @@
 			};
 		};
 
-		PUBLIC FUNCTION("array","showCamera") {
-			// [-0.4, 0.8,0.3,0.4]	
+		PUBLIC FUNCTION("array","r2w") {
 			private ["_name"];
+
 			_name = "camera_" + str(MEMBER("instanceid", nil));
+
 			uiNamespace setvariable [_name, findDisplay 46 ctrlCreate ["RscPicture", -1]]; 
 			(uiNamespace getvariable _name) ctrlSetPosition _this; 
 			(uiNamespace getvariable _name) ctrlCommit 0; 
-			(uiNamespace getvariable _name) ctrlSetText "#(argb,512,512,1)r2t("+ MEMBER("name", nil) + ",2)"; 
+			(uiNamespace getvariable _name) ctrlSetText "#(argb,512,512,1)r2t("+ MEMBER("name", nil) + ",1)"; 
 		};
+
+		PUBLIC FUNCTION("array","r2o") {
+			private ["_name", "_object"];
+
+			_object = _this;
+			_name = "camera_" + str(MEMBER("instanceid", nil));
+			_object setObjectTexture [0, "#(argb,512,512,1)r2t("+ MEMBER("name", nil) + ",2)"];
+		};		
 
 		PUBLIC FUNCTION("","deconstructor") { 
 			camDestroy MEMBER("camera", nil);
-			DELETE_VARIABLE("instanceid");
+			DELETE_VARIABLE("attach");
 			DELETE_VARIABLE("camera");
+			DELETE_VARIABLE("instanceid");
 			DELETE_VARIABLE("name");
 		};
 	ENDCLASS;
