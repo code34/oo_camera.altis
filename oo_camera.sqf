@@ -81,22 +81,14 @@
 			};
 		};
 
-		PUBLIC FUNCTION("array","r2w") {
+		PUBLIC FUNCTION("array","showCamera") {
 			// [-0.4, 0.8,0.3,0.4]	
 			private ["_name"];
 			_name = "camera_" + str(MEMBER("instanceid", nil));
 			uiNamespace setvariable [_name, findDisplay 46 ctrlCreate ["RscPicture", -1]]; 
 			(uiNamespace getvariable _name) ctrlSetPosition _this; 
 			(uiNamespace getvariable _name) ctrlCommit 0; 
-			(uiNamespace getvariable _name) ctrlSetText "#(argb,512,512,1)r2t("+ MEMBER("name", nil) + ", 1)"; 
-		};
-
-		PUBLIC FUNCTION("object","r2o") {
-			private ["_name", "_object"];
-
-			_object = _this;
-			_name = "camera_" + str(MEMBER("instanceid", nil));
-			_object setObjectTexture [0,"#(argb,512,512,1)r2t("+ MEMBER("name", nil) + ", 1)"];
+			(uiNamespace getvariable _name) ctrlSetText "#(argb,512,512,1)r2t("+ MEMBER("name", nil) + ",2)"; 
 		};
 
 		PUBLIC FUNCTION("","deconstructor") { 
