@@ -31,6 +31,10 @@
 	You can share, modify, distribute this script but don't remove the licence and the name of the original author
 
 	logs:
+		0.2 	- OO CAMERA 
+				- fix detach function param
+				- depricated old preset functions (goProcamera, topCamera, backCamera) use presetCamera instead
+				- add presetCamera function
 		0.1 	- OO CAMERA - first release
 
 
