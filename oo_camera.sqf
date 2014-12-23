@@ -1,6 +1,6 @@
 ﻿	/*
 	Author: code34 nicolas_boiteux@yahoo.fr
-	Copyright (C) 2014 Nicolas BOITEUX
+	Copyright (C) 2014-2015 Nicolas BOITEUX
 
 	CLASS OO_CAMERA
 	
@@ -24,23 +24,28 @@
 		PRIVATE VARIABLE("bool","attach");
 		PRIVATE VARIABLE("object","camera");
 		PRIVATE VARIABLE("string","name");
-		PRIVATE STATIC_VARIABLE("scalar","instanceid");
+		PRIVATE VARIABLE("string","ctrlname");
+		PRIVATE STATIC_VARIABLE("scalar","globalinstanceid");
+		PRIVATE VARIABLE("scalar","instanceid");
 
 		PUBLIC FUNCTION("array","constructor") {
 			private ["_cam", "_instanceid", "_name"];
 
-			_instanceid = MEMBER("instanceid",nil);
+			_instanceid = MEMBER("globalinstanceid",nil);
 			if (isNil "_instanceid") then {_instanceid = 0;};
 			_instanceid = _instanceid + 1;
-			MEMBER("instanceid",_instanceid);			
+			MEMBER("globalinstanceid",_instanceid);
+			MEMBER("instanceid",_instanceid);						
 
 			_name = "rtt"+str(_instanceid);
-			diag_log str(_name);
+			MEMBER("name", _name);
 
 			_cam = "camera" camCreate [position player select 0, position player select 1, 50];
 			_cam cameraEffect ["internal","back", _name]; 
 			MEMBER("camera", _cam);
-			MEMBER("name", _name);
+
+			_name = "ctrlname" + str(MEMBER("instanceid", nil));
+			MEMBER("ctrlname", _name);
 		};
 
 		PUBLIC FUNCTION("array","setPipEffect") {
@@ -57,7 +62,7 @@
 			MEMBER("attachTo", _array);
 		};
 
-		PUBLIC FUNCTION("object", "faceCamera"){
+		PUBLIC FUNCTION("object", "goProCamera"){
 			_array = [_this,[0,1,0], "neck"];
 			MEMBER("attachTo", _array);
 		};
@@ -67,6 +72,7 @@
 			
 			_object = _this select 0;
 			_position = _this select 1;
+			
 			if(count _this > 2) then {
 				_poscamera = _this select 2;
 			} else {
@@ -111,31 +117,29 @@
 				sleep 30;
 				deletewaypoint _wp;
 			};
+			sleep 30;
+			deletevehicle _uav;
 		};
 
 		PUBLIC FUNCTION("array","r2w") {
-			private ["_name"];
-
-			_name = "camera_" + str(MEMBER("instanceid", nil));
-
-			uiNamespace setvariable [_name, findDisplay 46 ctrlCreate ["RscPicture", -1]]; 
-			(uiNamespace getvariable _name) ctrlSetPosition _this; 
-			(uiNamespace getvariable _name) ctrlCommit 0; 
-			(uiNamespace getvariable _name) ctrlSetText "#(argb,512,512,1)r2t("+ MEMBER("name", nil) + ",1)"; 
+			uiNamespace setvariable [MEMBER("ctrlname", nil), findDisplay 46 ctrlCreate ["RscPicture", -1]]; 
+			(uiNamespace getvariable MEMBER("ctrlname", nil)) ctrlSetPosition _this; 
+			(uiNamespace getvariable MEMBER("ctrlname", nil)) ctrlCommit 0; 
+			(uiNamespace getvariable MEMBER("ctrlname", nil)) ctrlSetText "#(argb,512,512,9)r2t("+ MEMBER("name", nil) + ",1.0)"; 
 		};
 
-		PUBLIC FUNCTION("array","r2o") {
-			private ["_name", "_object"];
-
+		PUBLIC FUNCTION("object","r2o") {
+			private ["_object"];
 			_object = _this;
-			_name = "camera_" + str(MEMBER("instanceid", nil));
-			_object setObjectTexture [0, "#(argb,512,512,1)r2t("+ MEMBER("name", nil) + ",2)"];
+			_object setObjectTexture [0, "#(argb,512,512,9)r2t("+ MEMBER("name", nil) + ",1.0)"];
 		};		
 
 		PUBLIC FUNCTION("","deconstructor") { 
 			camDestroy MEMBER("camera", nil);
+			ctrlDelete (uiNamespace getvariable MEMBER("ctrlname", nil));
 			DELETE_VARIABLE("attach");
 			DELETE_VARIABLE("camera");
+			DELETE_VARIABLE("ctrlname");
 			DELETE_VARIABLE("instanceid");
 			DELETE_VARIABLE("name");
 		};
