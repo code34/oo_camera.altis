@@ -1,0 +1,84 @@
+	/*
+	Author: code34 nicolas_boiteux@yahoo.fr
+	Copyright (C) 2014-2015 Nicolas BOITEUX
+
+	CLASS OO_CAMERA -  Dynamic windows box - camera view
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+	*/
+
+
+
+
+	/*
+		Function: _cam = ["new"] call OO_CAMERA;
+		Create a new camera object
+		
+		Parameters:
+			none 
+		
+	*/
+
+
+	/*
+		Function: = [preset, object] spawn _cam;
+		Create a preset camera 
+		
+		Parameters:
+			preset - string can be : "backcamera", "topCamera", "goProCamera", "uavCamera"
+			
+	*/
+
+	/*
+		Function: = ["attachTo", array] call OO_PDW;
+		Attach a camere to an object
+		
+		Parameters:
+			array containing: 
+				- object - object to attach the camera
+				- array - position of the attachment point
+				- string - name of the attachment point (optionnal)
+		
+	*/
+
+	/*
+		Function: = ["detach", []] call OO_PDW;
+		Detach the camera
+		
+		Parameters:
+			empty array - will be fix
+		
+	*/
+
+	/*
+		Function: = ["r2w", array] call OO_PDW;
+		Create a dynamic windows containg the camera view
+		
+		Parameters:
+			array containing:
+				- left x position
+				- left y position
+				- width of windows
+				- height of windows
+		
+	*/
+
+	/*
+		Function: = ["r2o", object] call OO_PDW;
+		Create a dynamic surface instead of texture containg the camera view
+		
+		Parameters:
+			object wich will be use to print the camera view
+		
+	*/	
