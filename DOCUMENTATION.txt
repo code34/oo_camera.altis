@@ -53,11 +53,11 @@
 	*/
 
 	/*
-		Function: = ["detach", []] call OO_PDW;
+		Function: = "detach" call OO_PDW;
 		Detach the camera
 		
 		Parameters:
-			empty array - will be fix
+			none
 		
 	*/
 
