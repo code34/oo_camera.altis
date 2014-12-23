@@ -2,7 +2,7 @@
 	Author: code34 nicolas_boiteux@yahoo.fr
 	Copyright (C) 2014-2015 Nicolas BOITEUX
 
-	CLASS OO_CAMERA -  Pesistent Data World
+	CLASS OO_CAMERA -  Dynamic windows box - camera view
 	
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
