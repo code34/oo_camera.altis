@@ -52,19 +52,32 @@
 			MEMBER("name", nil) setPiPEffect _this;
 		};
 
-		PUBLIC FUNCTION("object", "backCamera"){
-			_array = [_this,[0.7,-2,1.5]];
-			MEMBER("attachTo", _array);
-		};
+		PUBLIC FUNCTION("array", "presetCamera"){
+			private ["_object", "_preset"];
+			
+			_object = _this select 0;
+			_preset = _this select 1;
 
-		PUBLIC FUNCTION("object", "topCamera"){
-			_array = [_this,[0,0,30]];
-			MEMBER("attachTo", _array);
-		};
+			switch(_preset) do {
+				case "backCamera": {
+					_array = [_object,[0.7,-2,1.5]];
+					MEMBER("attachTo", _array);
+				};
 
-		PUBLIC FUNCTION("object", "goProCamera"){
-			_array = [_this,[0,1,0], "neck"];
-			MEMBER("attachTo", _array);
+				case "topCamera": {
+					_array = [_object,[0,0,30]];
+					MEMBER("attachTo", _array);
+				};
+
+				case "goProCamera": {
+					_array = [_object,[0,1,0], "neck"];
+					MEMBER("attachTo", _array);
+				};
+
+				case "uavCamera": {
+					MEMBER("uavCamera", _object);
+				};
+			};
 		};
 
 		PUBLIC FUNCTION("array", "attachTo"){
@@ -96,7 +109,7 @@
 			};
 		};
 
-		PUBLIC FUNCTION("array", "detach"){
+		PUBLIC FUNCTION("", "detach"){
 			MEMBER("attach", false);
 		};
 
