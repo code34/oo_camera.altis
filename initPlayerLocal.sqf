@@ -4,7 +4,6 @@
 
 	_cam = ["new", []] call OO_CAMERA;
 	["presetCamera", [player, "backCamera"]] spawn _cam;
-	sleep 1;
 	["r2w", [-0.4, 0.8,0.3,0.4]] call _cam;
 
 	_cam2 = ["new", []] call OO_CAMERA;
