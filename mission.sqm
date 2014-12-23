@@ -3,77 +3,14 @@ class Mission
 {
 	addOns[]=
 	{
-		"A3_Modules_F_Multiplayer",
 		"A3_Characters_F_BLUFOR",
-		"a3_characters_f_beta",
-		"A3_Air_F_Gamma_UAV_02",
-		"A3_Soft_F_MRAP_01",
-		"A3_Armor_F_AMV",
-		"A3_Air_F_Heli_Light_01",
-		"A3_Air_F_Beta_Heli_Transport_01",
-		"A3_Air_F_Beta_Heli_Attack_01",
-		"A3_Misc_F_Helpers",
-		"A3_Structures_F_Mil_Helipads",
-		"A3_Structures_F_System",
-		"A3_Signs_F",
-		"a3_map_altis",
-		"A3_Characters_F_INDEP",
-		"A3_Air_F_Beta_Heli_Transport_02",
-		"A3_Air_F_Heli_Light_02",
-		"A3_armor_f_beta_APC_Tracked_02",
-		"A3_Soft_F_Offroad_01",
-		"A3_Soft_F_MRAP_03",
-		"A3_Soft_F_Quadbike",
-		"a3_soft_f_beta_quadbike",
-		"A3_Boat_F_Boat_Transport_01",
-		"a3_boat_f_beta_boat_transport_01",
-		"A3_Structures_F_Mil_Shelters",
-		"A3_Boat_F_Beta_Boat_Armed_01",
-		"A3_Boat_F_Boat_Armed_01",
-		"A3_Boat_F_SDV_01",
-		"A3_Structures_F_Civ_InfoBoards",
-		"A3_Modules_F_Intel",
-		"A3_Soft_F_Crusher_UGV",
-		"A3_UAV_F_Characters_F_Gamma",
-		"A3_Structures_F_Walls",
-		"A3_Characters_F_Gamma",
-		"A3_Armor_F_Slammer",
-		"A3_Armor_F_T100K",
-		"A3_Soft_F_Gamma_Offroad",
-		"A3_Armor_F_APC_Wheeled_03",
-		"A3_Air_F_Gamma_Plane_Fighter_03",
-		"A3_Soft_F_Car",
-		"A3_Soft_F_Truck",
-		"A3_Boat_F_Civilian_Boat",
-		"A3_Soft_F_Gamma_HEMTT",
-		"A3_Soft_F_Gamma_TruckHeavy",
-		"A3_Structures_F_Mil_BagBunker",
-		"A3_Characters_F_OPFOR",
-		"A3_Air_F_Gamma_UAV_01",
-		"A3_Modules_F_Supports",
-		"A3_Weapons_F_Ammoboxes",
-		"A3_Structures_F_Furniture",
 		"a3_characters_f",
-		"A3_Armor_F_Panther",
-		"A3_Air_F_Beta_Heli_Attack_02",
-		"A3_Soft_F_MRAP_02",
-		"A3_Static_F_Gamma",
-		"a3_static_f",
-		"A3_Armor_F_EPC_MBT_01",
-		"A3_Air_F_EPC_Plane_CAS_02",
-		"A3_Air_F_EPB_Heli_Light_03",
-		"A3_Structures_F_Ind_Cargo",
-		"A3_Structures_F_EPA_Mil_Scrapyard",
-		"A3_Armor_F_Marid",
-		"A3_Weapons_F_Bootcamp_Ammoboxes"
+		"a3_map_altis"
 	};
 	addOnsAuto[]=
 	{
 		"A3_Characters_F_BLUFOR",
 		"a3_characters_f",
-		"A3_Weapons_F_Ammoboxes",
-		"A3_Weapons_F_Bootcamp_Ammoboxes",
-		"A3_Soft_F_MRAP_01",
 		"a3_map_altis"
 	};
 	randomSeed=7374927;
@@ -108,10 +45,10 @@ class Mission
 			side="WEST";
 			class Vehicles
 			{
-				items=2;
+				items=1;
 				class Item0
 				{
-					position[]={3625.4871,14.88173,12936.006};
+					position[]={3620.4099,14.609165,12933.374};
 					id=0;
 					side="WEST";
 					vehicle="B_Soldier_F";
@@ -119,42 +56,25 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 				};
-				class Item1
-				{
-					position[]={3626.7759,14.916594,12932.218};
-					id=1;
-					side="WEST";
-					vehicle="B_Soldier_F";
-					player="PLAY CDG";
-					skill=0.60000002;
-				};
 			};
 		};
 	};
 	class Vehicles
 	{
-		items=3;
+		items=2;
 		class Item0
 		{
 			position[]={3620.7444,14.702965,12937.566};
-			id=2;
+			id=1;
 			side="EMPTY";
-			vehicle="B_supplyCrate_F";
+			vehicle="SignAd_Sponsor_F";
 			skill=0.60000002;
+			text="toto";
 		};
 		class Item1
 		{
-			position[]={3619.9597,14.588625,12933.921};
-			id=3;
-			side="EMPTY";
-			vehicle="Box_FIA_Wps_F";
-			skill=0.60000002;
-			text="car";
-		};
-		class Item2
-		{
-			position[]={3622.2217,14.660501,12928.269};
-			id=4;
+			position[]={3613.8672,14.277301,12932.144};
+			id=2;
 			side="EMPTY";
 			vehicle="B_MRAP_01_hmg_F";
 			skill=0.60000002;
