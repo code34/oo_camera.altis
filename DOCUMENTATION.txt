@@ -33,7 +33,7 @@
 
 	/*
 		Function: = [preset, object] spawn _cam;
-		Create a preset camera 
+		Use a preset camera 
 		
 		Parameters:
 			preset - string can be : "backcamera", "topCamera", "goProCamera", "uavCamera"
@@ -41,7 +41,7 @@
 	*/
 
 	/*
-		Function: = ["attachTo", array] call OO_PDW;
+		Function: = ["attachTo", array] call _cam;
 		Attach a camere to an object
 		
 		Parameters:
@@ -53,7 +53,7 @@
 	*/
 
 	/*
-		Function: = "detach" call OO_PDW;
+		Function: = "detach" call _cam;
 		Detach the camera
 		
 		Parameters:
@@ -62,7 +62,7 @@
 	*/
 
 	/*
-		Function: = ["r2w", array] call OO_PDW;
+		Function: = ["r2w", array] call _cam;
 		Create a dynamic windows containg the camera view
 		
 		Parameters:
@@ -75,7 +75,7 @@
 	*/
 
 	/*
-		Function: = ["r2o", object] call OO_PDW;
+		Function: = ["r2o", object] call _cam;
 		Create a dynamic surface instead of texture containg the camera view
 		
 		Parameters:
