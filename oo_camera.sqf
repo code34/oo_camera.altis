@@ -1,6 +1,6 @@
 ﻿	/*
 	Author: code34 nicolas_boiteux@yahoo.fr
-	Copyright (C) 2014-2015 Nicolas BOITEUX
+	Copyright (C) 2014-2018 Nicolas BOITEUX
 
 	CLASS OO_CAMERA
 	
@@ -142,9 +142,7 @@
 		};
 
 		PUBLIC FUNCTION("object","r2o") {
-			private ["_object"];
-			_object = _this;
-			_object setObjectTexture [0, "#(argb,512,512,9)r2t("+ MEMBER("name", nil) + ",1.0)"];
+			_this setObjectTexture [0, "#(argb,512,512,9)r2t("+ MEMBER("name", nil) + ",1.0)"];
 		};		
 
 		PUBLIC FUNCTION("","deconstructor") { 
