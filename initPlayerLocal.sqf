@@ -1,4 +1,4 @@
-	call compilefinal preprocessFileLineNumbers "oo_camera.sqf";
+	call compile preprocessFileLineNumbers "oo_camera.sqf";
 
 	sleep 4;
 
